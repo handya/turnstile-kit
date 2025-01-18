@@ -9,7 +9,7 @@ import Foundation
 import Vapor
 
 public extension Request {
-    func siteVerify(response: String) async throws -> TurnstileResponse {
+    func turnstileVerify(response: String) async throws -> TurnstileResponse {
         guard let config = self.application.turnstile.configuration else {
             throw TurnstileKitError.notConfigured
         }
