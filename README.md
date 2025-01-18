@@ -1,5 +1,5 @@
 # TurnstileKit
-Helpful extension for using (Cloudflare Turnstile)[https://www.cloudflare.com/application-services/products/turnstile/]
+Helpful extension for using [Cloudflare Turnstile](https://www.cloudflare.com/application-services/products/turnstile/)
 
 ### Setup
 
