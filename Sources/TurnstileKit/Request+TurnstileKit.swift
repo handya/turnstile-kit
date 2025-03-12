@@ -16,17 +16,18 @@ public extension Request {
 
         let request: TurnstileRequest = .init(response: response, secret: config.secretKey)
 
-        let url = URI(string: "https://challenges.cloudflare.com/turnstile/v0/siteverify")
+        let response = try await self.client.post(.cloudFlareTurnstileSiteVerifyURL, content: request)
 
-        // Make the POST request
-        let response = try await self.client.post(url, content: request)
-
-        // Decode the response from the third-party API
         guard let validationResponse = try? response.content.decode(TurnstileResponse.self) else {
-            throw Abort(.badRequest, reason: "Invalid response from the third-party API")
+            throw TurnstileKitError.response
         }
 
-        // Return the validation result
         return validationResponse
     }
+}
+
+private extension URI {
+    static let cloudFlareTurnstileSiteVerifyURL: URI = URI(
+        string: "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+    )
 }

@@ -9,4 +9,5 @@ import Foundation
 
 enum TurnstileKitError: Error {
     case notConfigured
+    case response
 }
